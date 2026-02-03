@@ -5,7 +5,7 @@ import React from "react";
 export default function Footer() {
   return (
     <>
-      <section>
+      <section className="bg-electric-blue py-4">
         <div className="maxW">
           Footer
         </div>

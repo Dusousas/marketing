@@ -5,27 +5,26 @@ import Solutions from "./Solutions";
 
 export default function Hero() {
   return (
-    <section className="relative py-20 overflow-hidden bg-[#fbfaf8]">
+    <section className="relative pt-20 overflow-hidden bg-background">
       {/* GLOWS (fundo) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         {/* azul */}
-        <div className="absolute -top-104 left-1/2 h-[520px] w-[1020px] -translate-x-1/2 rounded-full bg-electric-blue/15 blur-[120px]" />
+        <div className="absolute -top-104 left-1/2 h-[520px] w-[1020px] -translate-x-1/2 rounded-full bg-electric-blue/10 blur-[120px]" />
 
         {/* âmbar */}
-        <div className="absolute -bottom-28 right-[-140px] h-[560px] w-[560px] rounded-full bg-soft-amber/25 blur-[140px]" />
+        <div className="absolute bottom-40 right-[-140px] h-[560px] w-[500px] bg-soft-amber/15 blur-[140px]" />
 
-        {/* leve “vignette” pra dar contraste */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,transparent_55%,rgba(0,0,0,.05)_100%)]" />
+
       </div>
 
       {/* Conteúdo */}
-      <div className="relative max flex flex-col items-center gap-10">
+      <div className="relative flex flex-col items-center gap-10">
         <article className="text-center">
           <h1 className="font-sans uppercase opacity-80">
             Marketig & produção Audiovisual
           </h1>
 
-          <h2 className="font-title text-6xl mt-2">
+          <h2 className="font-title text-7xl mt-2">
             Criamos histórias que vendem
           </h2>
 
@@ -40,8 +39,7 @@ export default function Hero() {
                 font-cta uppercase
                 bg-electric-blue text-white
                 px-5 py-2 rounded-xl
-                shadow-[0_18px_50px_rgba(59,123,255,.35)]
-                hover:shadow-[0_22px_70px_rgba(59,123,255,.45)]
+
                 transition
               "
               href=""
@@ -51,7 +49,7 @@ export default function Hero() {
           </div>
         </article>
 
-        <article className="w-full lg:w-1/2">
+        <article className="w-full">
           <Solutions />
         </article>
       </div>

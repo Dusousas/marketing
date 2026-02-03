@@ -97,7 +97,7 @@ export default function Solutions3D() {
   const radiusMobile = 280;
 
   return (
-    <section className="w-full py-16overflow-hidden">
+    <section className="w-full overflow-hidden">
 
       <div className="relative w-full">
 
@@ -166,7 +166,7 @@ function Card({ item }: { item: Item }) {
       className="
         relative w-full h-full
         rounded-[28px] overflow-hidden
-        shadow-[0_20px_60px_rgba(0,0,0,.25)]
+       
         hover:scale-[1.02] transition-transform duration-300
         bg-black
       "
