@@ -73,7 +73,7 @@ export default function Line() {
                 {s.number}
               </p>
 
-              <h2 className="marqueeTitle font-title font-semibold text-9xl">
+              <h2 className="marqueeTitle font-title font-semibold text-7xl lg:text-9xl">
                 {s.label}
               </h2>
             </div>
@@ -99,7 +99,7 @@ export default function Line() {
                 {s.number}
               </p>
 
-              <h2 className="marqueeTitle font-title font-semibold text-9xl">
+              <h2 className="marqueeTitle font-title font-semibold text-7xl lg:text-9xl">
                 {s.label}
               </h2>
             </div>
@@ -107,109 +107,7 @@ export default function Line() {
         </div>
       </div>
 
-      {/* CSS só de animação / efeito */}
-      <style>{`
-        .marqueeWrap{
-          width: 100%;
-          overflow: hidden;
-          position: relative;
 
-          -webkit-mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent
-          );
-          mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent
-          );
-        }
-
-        .marqueeWrap--second{
-          margin-top: 18px;
-          opacity: .95;
-        }
-
-        .marqueeTrack{
-          display: flex;
-          width: max-content;
-          gap: 40px;
-          padding-right: 40px;
-          will-change: transform;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-        }
-
-        .marqueeWrap:hover .marqueeTrack{
-          animation-play-state: paused;
-        }
-
-        .marqueeTrack--left{
-          animation: marqueeLeft 90s linear infinite;
-        }
-
-        .marqueeTrack--right{
-          animation: marqueeRight 100s linear infinite;
-        }
-
-        @keyframes marqueeLeft{
-          from{ transform: translateX(0); }
-          to{ transform: translateX(-50%); }
-        }
-
-        @keyframes marqueeRight{
-          from{ transform: translateX(-50%); }
-          to{ transform: translateX(0); }
-        }
-
-        .marqueeItem{
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          user-select: none;
-          cursor: pointer;
-          transition: transform .25s ease;
-        }
-
-        .marqueeItem:hover{
-          transform: scale(1.02);
-        }
-
-        .marqueeNum{
-          margin-top: 8px;
-          transition: color .25s ease;
-        }
-
-        .marqueeTitle{
-          line-height: 1;
-          transition: color .25s ease, text-shadow .25s ease;
-        }
-
-        .marqueeItem:hover .marqueeNum,
-        .marqueeItem:hover .marqueeTitle{
-          color: var(--c);
-        }
-
- 
-
-        @media (max-width: 640px){
-          .marqueeTrack--left{ animation-duration: 34s; }
-          .marqueeTrack--right{ animation-duration: 38s; }
-          .marqueeWrap--second{ margin-top: 14px; }
-        }
-
-        @media (prefers-reduced-motion: reduce){
-          .marqueeTrack{
-            animation: none !important;
-            transform: translateX(0) !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

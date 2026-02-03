@@ -40,3 +40,151 @@ body, html {
   margin: 0 auto;
   padding: 0 2%;
 }
+
+/* ===========================
+   MARQUEE BASE
+=========================== */
+
+.marqueeWrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  /* fade nas bordas */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+/* espaçamento da segunda linha */
+.marqueeWrap--second {
+  margin-top: 18px;
+  opacity: 0.95;
+}
+
+/* ===========================
+   TRACK (linha que anda)
+=========================== */
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  gap: 40px;
+  padding-right: 40px;
+
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* pausa quando passa o mouse */
+.marqueeWrap:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+/* sentido normal */
+.marqueeTrack--left {
+  animation: marqueeLeft 240s linear infinite;
+}
+
+/* sentido contrário */
+.marqueeTrack--right {
+  animation: marqueeRight 280s linear infinite;
+}
+
+/* ===========================
+   KEYFRAMES
+=========================== */
+
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ===========================
+   ITEM
+=========================== */
+
+.marqueeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.marqueeItem:hover {
+  transform: scale(1.02);
+}
+
+/* ===========================
+   TEXTO / HOVER COLOR
+=========================== */
+
+.marqueeNum {
+  margin-top: 8px;
+  transition: color 0.25s ease;
+}
+
+
+
+/* cor e glow aleatório no hover */
+.marqueeItem:hover .marqueeNum,
+.marqueeItem:hover .marqueeTitle {
+  color: var(--c);
+}
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+
+@media (max-width: 640px) {
+  .marqueeTrack--left {
+    animation-duration: 100s;
+  }
+
+  .marqueeTrack--right {
+    animation-duration: 100s;
+  }
+
+  .marqueeWrap--second {
+    margin-top: 14px;
+  }
+}
+
+/* ===========================
+   ACESSIBILIDADE
+=========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+}
+
