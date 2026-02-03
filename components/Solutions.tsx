@@ -23,38 +23,64 @@ const ITEMS: Item[] = [
 export default function Solutions3D() {
   const items = useMemo(() => ITEMS, []);
 
-  const sceneRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
   const draggingRef = useRef(false);
   const lastXRef = useRef(0);
   const velocityRef = useRef(0);
 
-  const [paused, setPaused] = useState(false);
-  const [rotateY, setRotateY] = useState(0);
+  // 👇 não usar state pra rotação (evita re-render e tremedeira)
+  const rotateYRef = useRef(0);
 
-  // Ajustes (você pode mexer)
-  const speed = 0.15; // rotação automática (graus por frame aprox)
-  const friction = 0.93; // “inércia” do arrasto
+  const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  // Ajustes
+  const speed = 0.15;
+  const friction = 0.93;
   const maxVel = 6;
+
+  // raio do cilindro (desktop intocado!)
+  const radius = 420; // desktop
+  const radiusMobile = 360; // mobile mais espaçado
+
+  useEffect(() => {
+    // ✅ detecta mobile sem ficar lendo window.innerWidth no render
+    const mq = window.matchMedia("(max-width: 767px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+
+    // Safari antigo não tem addEventListener no MediaQueryList
+    if (mq.addEventListener) mq.addEventListener("change", apply);
+    else mq.addListener(apply);
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", apply);
+      else mq.removeListener(apply);
+    };
+  }, []);
 
   useEffect(() => {
     const tick = () => {
-      setRotateY((prev) => {
-        // auto rotate quando não está pausado e não está arrastando
-        let next = prev;
-        if (!paused && !draggingRef.current) {
-          next = prev + speed;
-        }
+      const z = isMobile ? radiusMobile : radius;
 
-        // inércia após soltar (e também durante arrasto, suaviza)
-        if (!draggingRef.current && Math.abs(velocityRef.current) > 0.01) {
-          next = next + velocityRef.current;
-          velocityRef.current *= friction;
-        }
+      // auto rotate
+      if (!paused && !draggingRef.current) {
+        rotateYRef.current += speed;
+      }
 
-        return next;
-      });
+      // inércia
+      if (!draggingRef.current && Math.abs(velocityRef.current) > 0.01) {
+        rotateYRef.current += velocityRef.current;
+        velocityRef.current *= friction;
+      }
+
+      // ✅ aplica transform direto no elemento (sem setState por frame)
+      if (carouselRef.current) {
+        carouselRef.current.style.transform = `translateZ(-${z}px) rotateY(${rotateYRef.current}deg)`;
+      }
 
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -63,7 +89,7 @@ export default function Solutions3D() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [paused]);
+  }, [paused, isMobile]);
 
   function onPointerDown(e: React.PointerEvent) {
     draggingRef.current = true;
@@ -74,13 +100,14 @@ export default function Solutions3D() {
 
   function onPointerMove(e: React.PointerEvent) {
     if (!draggingRef.current) return;
+
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
 
-    // arrastar gira o carrossel
-    setRotateY((r) => r + dx * 0.25);
+    // gira com o dedo/mouse (sem re-render)
+    rotateYRef.current += dx * 0.25;
 
-    // guarda velocidade (pra inércia)
+    // velocidade pra inércia
     const v = dx * 0.12;
     velocityRef.current = Math.max(-maxVel, Math.min(maxVel, v));
   }
@@ -91,20 +118,13 @@ export default function Solutions3D() {
 
   const n = items.length;
   const theta = 360 / n;
-
-  // raio do cilindro (quanto maior, mais “aberto”)
-  const radius = 420; // desktop
-  const radiusMobile = 280;
+  const z = isMobile ? radiusMobile : radius;
 
   return (
     <section className="w-full overflow-hidden">
-
       <div className="relative w-full">
-
-
         {/* SCENE */}
         <div
-          ref={sceneRef}
           className="
             relative mx-auto
             h-[420px] md:h-[520px]
@@ -122,21 +142,19 @@ export default function Solutions3D() {
         >
           {/* CAROUSEL */}
           <div
+            ref={carouselRef}
             className="
               relative
-              w-[260px] h-[340px] md:w-[320px] md:h-[420px]
+              w-[220px] h-[300px] md:w-[320px] md:h-[420px]
               [transform-style:preserve-3d]
               transition-transform duration-75
+              [will-change:transform]
             "
-            style={{
-              transform: `translateZ(-${
-                typeof window !== "undefined" && window.innerWidth < 768 ? radiusMobile : radius
-              }px) rotateY(${rotateY}deg)`,
-            }}
+            // define um transform inicial (o RAF assume depois)
+            style={{ transform: `translateZ(-${z}px) rotateY(0deg)` }}
           >
             {items.map((item, i) => {
               const angle = i * theta;
-              const z = typeof window !== "undefined" && window.innerWidth < 768 ? radiusMobile : radius;
 
               return (
                 <div
@@ -144,6 +162,8 @@ export default function Solutions3D() {
                   className="
                     absolute inset-0
                     [transform-style:preserve-3d]
+                    [backface-visibility:hidden]
+                    [will-change:transform]
                   "
                   style={{
                     transform: `rotateY(${angle}deg) translateZ(${z}px)`,
@@ -166,9 +186,10 @@ function Card({ item }: { item: Item }) {
       className="
         relative w-full h-full
         rounded-[28px] overflow-hidden
-       
         hover:scale-[1.02] transition-transform duration-300
         bg-black
+        [backface-visibility:hidden]
+        [transform:translateZ(0)]
       "
     >
       <Image
@@ -176,7 +197,7 @@ function Card({ item }: { item: Item }) {
         alt={item.title}
         fill
         className="object-cover"
-        sizes="(max-width: 768px) 260px, 320px"
+        sizes="(max-width: 768px) 220px, 320px"
         priority={false}
       />
 

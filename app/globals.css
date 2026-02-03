@@ -28,10 +28,11 @@
   --font-serif: var(--font-serif);
 }
 
-body {
+body, html {
   background-color: #f2f2f2;
   color: var(--foreground);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 .maxW{
