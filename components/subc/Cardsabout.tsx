@@ -23,9 +23,9 @@ export default function Cardsabout() {
           {/* GRID */}
           <div className="mt-16 grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-4 flex justify-center">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-[1100px]">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-[1200px]">
                 {/* CARD 1 */}
-                <div className="bg-white/10 rounded-2xl p-6 flex flex-col gap-6">
+                <div className="bg-white/10 rounded-xl p-6 flex flex-col gap-6">
                   <img
                     src="/test.webp"
                     alt="Social Media Marketing"
@@ -43,7 +43,7 @@ export default function Cardsabout() {
                 </div>
 
                 {/* CARD 2 — DESTAQUE */}
-                <div className="bg-electric-blue/90 rounded-2xl p-6 flex flex-col items-center justify-center gap-6">
+                <div className="bg-electric-blue/90 rounded-xl p-6 flex flex-col items-center justify-center gap-6">
                   <div className="text-white">
                     <h3 className="font-title text-2xl mb-3">
                       Content Marketing
@@ -61,7 +61,7 @@ export default function Cardsabout() {
                 </div>
 
                 {/* CARD 3 */}
-                <div className="bg-white/10 rounded-2xl p-6 flex flex-col gap-6">
+                <div className="bg-white/10 rounded-xl p-6 flex flex-col gap-6">
                   <img
                     src="/test.webp"
                     alt="Email Marketing"
