@@ -2,7 +2,7 @@ export default function Form() {
   return (
     <>
       <form
-        className="
+        className="mt-10 lg:mt-0
           bg-foreground/90
           backdrop-blur-xl
           py-10 px-8
