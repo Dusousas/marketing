@@ -10,14 +10,14 @@ type Item = {
 };
 
 const ITEMS: Item[] = [
-  { title: "Marketing Digital", subtitle: "Estratégia & presença", img: "/solutions/marketing.jpg" },
-  { title: "Tráfego Pago", subtitle: "Meta • Google • TikTok", img: "/solutions/traffic.jpg" },
-  { title: "Gestão de Redes", subtitle: "Conteúdo que vende", img: "/solutions/social.jpg" },
-  { title: "Branding", subtitle: "Posicionamento", img: "/solutions/branding.jpg" },
-  { title: "Sites & Landing Pages", subtitle: "Alta conversão", img: "/solutions/web.jpg" },
-  { title: "SEO", subtitle: "Orgânico", img: "/solutions/seo.jpg" },
-  { title: "Produção Audiovisual", subtitle: "Reels & Ads", img: "/solutions/video.jpg" },
-  { title: "Automação & CRM", subtitle: "Funil", img: "/solutions/crm.jpg" },
+  { title: "Marketing Digital", subtitle: "Estratégia & presença", img: "/1.webp" },
+  { title: "Tráfego Pago", subtitle: "Meta • Google • TikTok", img: "/2.jpg" },
+  { title: "Gestão de Redes", subtitle: "Conteúdo que vende", img: "/1.webp" },
+  { title: "Branding", subtitle: "Posicionamento", img: "/2.jpg" },
+  { title: "Sites & Landing Pages", subtitle: "Alta conversão", img: "/1.webp" },
+  { title: "SEO", subtitle: "Orgânico", img: "/2.jpg" },
+  { title: "Produção Audiovisual", subtitle: "Reels & Ads", img: "/1.webp" },
+  { title: "Automação & CRM", subtitle: "Funil", img: "/2.jpg" },
 ];
 
 export default function Solutions3D() {
