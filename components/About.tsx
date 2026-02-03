@@ -3,6 +3,7 @@ import Cardsabout from "./subc/Cardsabout";
 export default function About() {
   return (
     <section className="relative pt-20 pb-20 overflow-hidden">
+        <img className="hidden absolute z-[50] w-[200px] top-50 lg:block" src="/arrow.png" alt="" />
       {/* LIStra arco-íris (fina e discreta) */}
       <div
         aria-hidden
