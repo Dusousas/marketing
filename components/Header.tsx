@@ -1,13 +1,11 @@
-"use client";
-
-import React from "react";
-
 export default function Header() {
   return (
     <>
-      <section>
+      <section className="bg-white py-4">
         <div className="maxW">
-          Header
+          <div>
+            <a className="font-title text-3xl tracking-wider text-electric-blue font-bold" href="">Minhalogo</a>
+          </div>
         </div>
       </section>
     </>
