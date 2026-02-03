@@ -28,14 +28,14 @@ export default function SocialMedia() {
         {/* esse fica na MESMA posição, mas o fundo estica até o final */}
         <article
           className="
-            relative text-white bg-electric-blue flex items-center py-2 gap-4 px-6
+            relative text-electric-blue bg-white flex items-center py-2 gap-4 px-6
             after:content-[''] after:absolute after:top-0 after:bottom-0 after:left-full
-            after:w-screen after:bg-electric-blue
+            after:w-screen after:bg-white
           "
         >
-          <a href=""><FaInstagram /></a>
-          <a href=""><FaInstagram /></a>
-          <a href=""><FaInstagram /></a>
+          <a className="text-2xl" href=""><FaInstagram /></a>
+          <a className="text-2xl" href=""><FaInstagram /></a>
+          <a className="text-2xl" href=""><FaInstagram /></a>
         </article>
       </div>
     </section>

@@ -69,7 +69,6 @@ body, html {
 
 /* espaçamento da segunda linha */
 .marqueeWrap--second {
-  margin-top: 18px;
   opacity: 0.95;
 }
 

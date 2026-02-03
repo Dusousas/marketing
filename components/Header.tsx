@@ -1,10 +1,12 @@
 export default function Header() {
   return (
     <>
-      <section className="bg-white py-4">
+      <section className="bg-electric-blue py-4">
         <div className="maxW">
           <div>
-            <a className="font-title text-3xl tracking-wider text-electric-blue font-bold" href="">Minhalogo</a>
+            <a className="font-title text-3xl tracking-wider font-bold" href="/">
+              <img className="w-[180px]" src="/elev-logo.png" alt="" />
+            </a>
           </div>
         </div>
       </section>
