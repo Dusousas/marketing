@@ -50,13 +50,27 @@ export default function Menu() {
 
       tl.current = gsap
         .timeline()
-        .to(overlayRef.current, { autoAlpha: 1, duration: 0.18, ease: "power2.out" })
-        .to(panelRef.current, { x: 0, autoAlpha: 1, duration: 0.28, ease: "power3.out" }, 0)
+        .to(overlayRef.current, {
+          autoAlpha: 1,
+          duration: 0.18,
+          ease: "power2.out",
+        })
+        .to(
+          panelRef.current,
+          { x: 0, autoAlpha: 1, duration: 0.28, ease: "power3.out" },
+          0,
+        )
         .fromTo(
           items,
           { y: 10, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.22, ease: "power3.out", stagger: 0.05 },
-          0.06
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.22,
+            ease: "power3.out",
+            stagger: 0.05,
+          },
+          0.06,
         );
     });
 
@@ -96,9 +110,24 @@ export default function Menu() {
                    text-white hover:bg-white/10 transition"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M4 7h16" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-          <path d="M4 12h16" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-          <path d="M4 17h16" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+          <path
+            d="M4 7h16"
+            stroke="#fff"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M4 12h16"
+            stroke="#fff"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M4 17h16"
+            stroke="#fff"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
       </button>
 
@@ -120,7 +149,7 @@ export default function Menu() {
           >
             {/* Top bar com X */}
             <div className="flex items-center justify-between p-6 border-b border-white/10">
-                        <img className="w-[100px]" src="/elev-logo.png" alt="" />
+              <img className="w-[100px]" src="/elev-logo.png" alt="" />
 
               <button
                 aria-label="Fechar menu"
@@ -128,8 +157,18 @@ export default function Menu() {
                 className="p-2 rounded-lg text-white hover:bg-white/10 transition"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 6l12 12" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-                  <path d="M18 6L6 18" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+                  <path
+                    d="M6 6l12 12"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M18 6L6 18"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             </div>

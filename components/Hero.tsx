@@ -9,10 +9,10 @@ export default function Hero() {
       {/* GLOWS (fundo) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         {/* azul */}
-        <div className="absolute -top-104 left-1/2 h-[520px] w-[1020px] -translate-x-1/2 rounded-full bg-electric-blue/10 blur-[120px]" />
+        <div className="absolute -top-104 left-1/2 h-[520px] w-[1020px] -translate-x-1/2 rounded-full bg-electric-blue/25 blur-[120px]" />
 
         {/* âmbar */}
-        <div className="absolute bottom-40 right-[-140px] h-[560px] w-[500px] bg-soft-amber/15 blur-[140px]" />
+        <div className="absolute bottom-40 right-[-140px] h-[560px] w-[500px] bg-soft-amber/25 blur-[140px]" />
 
 
       </div>
